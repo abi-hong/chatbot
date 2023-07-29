@@ -1,23 +1,20 @@
-import logo from './logo.svg';
 import './App.css';
+import ChatHeader from './components/ChatHeader';
+import ChatInputBox from './components/ChatInputBox';
+import ChatBody from './components/ChatBody';
+
+const topCss = {
+  
+}
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={topCss} className="App">
+      <ChatHeader></ChatHeader>
+      <div className="chat-body">
+        <ChatBody></ChatBody>
+        <ChatInputBox className="ChatInputBox"></ChatInputBox>
+      </div>
     </div>
   );
 }

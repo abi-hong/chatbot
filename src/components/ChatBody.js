@@ -1,12 +1,8 @@
-const chatBody = {
-    width: "100%",
-    height: "815px",
-    background: "blue",
-}
+import '../styles/chatBody.css';
 
 export default function ChatBody() {
     return (
-        <div style={chatBody}>
+        <div className="chat-body">
         </div>
     );
 }

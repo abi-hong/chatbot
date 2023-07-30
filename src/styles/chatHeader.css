@@ -1,0 +1,23 @@
+/* sticky header 만들기*/
+.chat-header {
+    height: 40px;
+    position: sticky;
+    top: 0;
+    background: teal;
+    color: white;
+    padding-left: 32px;
+    padding-right: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.chat-header-title {
+    list-style-type: none;
+    padding: 0;
+}
+.chat-header-btn {
+    display: inline-block;
+    margin-left: 16px;
+    font-size: 18px;
+    font-weight: bold;
+}

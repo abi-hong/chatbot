@@ -5,19 +5,19 @@
     color: white;
     display: flex;
     justify-content: flex-start;
-    align-items: center;
+    /*align-items: center;*/
     width: 100%;
     height: auto;
 }
 .chat-input-box-btn {
     background: black;
     width: 41px;
-    height: auto;
 }
 .chat-input-box-textarea {
     width: 100%;
     display: inline-block;
     padding: 10px 20px;
-    /*font-size: 1.1rem;*/
-    font-size: 20px;
+    font-size: 18px;
+    align-items: center;
+    max-height: 61px;
 }

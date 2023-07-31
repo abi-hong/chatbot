@@ -28,7 +28,7 @@ export default function ChatInputBox() {
         }
     };
 
-    const resizeScrollHeight = (e) => {
+    /*const resizeScrollHeight = (e) => {
         let row = e.target.value.split('\n').length;
         if () {
             console.log('row', row);
@@ -36,14 +36,14 @@ export default function ChatInputBox() {
             textArea.current.style.height = textArea.current.scrollHeight + 'px';
             console.log('textArea.current.scrollHeight', textArea.current.scrollHeight);
         }
-    }
+    }*/
 
     return (
         <div className='chat-input-box'>
             <button className='chat-input-box-btn' ref={btn}></button>
             <textarea rows={1} className='chat-input-box-textarea'
                 onKeyDown={submitMessage} 
-                onChange={resizeScrollHeight} 
+                /*onChange={resizeScrollHeight}*/
                 ref={textArea} placeholder='궁금한 내용을 입력해주세요.'>
             </textarea>
         </div>

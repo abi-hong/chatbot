@@ -1,9 +1,9 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import '../styles/chatInputBox.css';
+import Question from './Question';
 
 // 엔터 누르면 전송되도록
-export default function ChatInputBox() {
-    //const question_message = "";
+export default function ChatInputBox(props) {
     const textArea = useRef();
     const btn = useRef();
 
@@ -14,17 +14,19 @@ export default function ChatInputBox() {
         }
 
         if (e.key === 'Enter' && e.shiftKey) { // [shift] + [Enter] 치면 걍 리턴
-            //textArea.current.style.height = 'auto';
-            //textArea.current.style.height = textArea.current.scrollHeight + 'px';
-            //console.log('textArea.current.scrollHeight', textArea.current.scrollHeight);
+            textArea.current.style.height = 'auto';
+            textArea.current.style.height = textArea.current.scrollHeight + 'px';
             return;
         } 
         else if (e.key === 'Enter') { // [Enter] 치면 메시지 보내기
             console.log(e.target.value);
+            
+            let question_message = e.target.value;
+            props.sendData(question_message);
+            
             textArea.current.value = "";
             textArea.current.blur();
             textArea.current.style.height = 'auto';
-            //sendText(e);
         }
     };
 

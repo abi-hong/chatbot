@@ -1,6 +1,5 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import '../styles/chatInputBox.css';
-import Question from './Question';
 import { connect } from 'react-redux';
 
 // 엔터 누르면 전송되도록

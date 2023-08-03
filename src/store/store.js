@@ -3,7 +3,7 @@ import { createStore } from 'redux';
 const initState = {
     mode: 'WELCOME',
     welcome_content: "안녕하세요. 챗봇입니다!",
-    questions: [],
+    questions: ["챗봇질문1", "챗봇질문2"],
     answers: [],
 }
 
@@ -19,8 +19,12 @@ function reducer(state=initState, action) {
 
         return {
             ...state,
-            questions: newQuestions 
+            questions: newQuestions ,
+            mode: 'SHOW'
         }; //발화 데이터 추가하기
+    }
+    if (action.type === 'SHOW') {
+
     }
     return state;
 }

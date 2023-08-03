@@ -8,16 +8,14 @@ const topCss = {
   minHeight: "100vh"
 }
 
-function App() {
+export default function App() {
   return (
     <div style={topCss} className="App">
-      <ChatHeader className="chat-header"></ChatHeader>
+      <ChatHeader></ChatHeader>
       {/*<div className="chat-body">*/}
-        <ChatBody className="ChatBody"></ChatBody>
-        <ChatInputBox className="ChatInputBox"></ChatInputBox>
+        <ChatBody></ChatBody>
+        <ChatInputBox></ChatInputBox>
       {/*</div>*/}
     </div>
   );
 }
-
-export default App;

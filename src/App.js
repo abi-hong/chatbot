@@ -6,26 +6,15 @@ import ChatBody from './components/ChatBody';
 
 const topCss = {
   minHeight: "100vh"
-
 }
 
 function App() {
-  const [questionId, setQuestionId] = useState(0);
-  const [question, setQuestion] = useState("");
-
-  const sendData = (data) => {
-    console.log('sendData data', data);
-    console.log('questionId', questionId);
-    setQuestionId(questionId + 1);
-    setQuestion(data);
-  };
-
   return (
     <div style={topCss} className="App">
       <ChatHeader className="chat-header"></ChatHeader>
       {/*<div className="chat-body">*/}
         <ChatBody className="ChatBody"></ChatBody>
-        <ChatInputBox className="ChatInputBox" sendData={sendData}></ChatInputBox>
+        <ChatInputBox className="ChatInputBox"></ChatInputBox>
       {/*</div>*/}
     </div>
   );

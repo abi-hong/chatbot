@@ -22,8 +22,6 @@ function ChatInputBox(props) {
         else if (e.key === 'Enter') { // [Enter] 치면 메시지 보내기
             console.log(e.target.value);
             props.onKeyDown(e.target.value);
-            //let question_message = e.target.value;
-            //props.sendData(question_message);
             
             textArea.current.value = "";
             textArea.current.blur();

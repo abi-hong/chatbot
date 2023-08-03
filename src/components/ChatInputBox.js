@@ -1,9 +1,10 @@
 import React, { useRef, useState } from 'react';
 import '../styles/chatInputBox.css';
 import Question from './Question';
+import { connect } from 'react-redux';
 
 // 엔터 누르면 전송되도록
-export default function ChatInputBox(props) {
+function ChatInputBox(props) {
     const textArea = useRef();
     const btn = useRef();
 
@@ -20,9 +21,9 @@ export default function ChatInputBox(props) {
         } 
         else if (e.key === 'Enter') { // [Enter] 치면 메시지 보내기
             console.log(e.target.value);
-            
-            let question_message = e.target.value;
-            props.sendData(question_message);
+            props.onKeyDown(e.target.value);
+            //let question_message = e.target.value;
+            //props.sendData(question_message);
             
             textArea.current.value = "";
             textArea.current.blur();
@@ -44,10 +45,21 @@ export default function ChatInputBox(props) {
         <div className='chat-input-box'>
             <button className='chat-input-box-btn' ref={btn}></button>
             <textarea rows={1} className='chat-input-box-textarea'
-                onKeyDown={submitMessage} 
+                onKeyDown={submitMessage.bind(this)} 
                 /*onChange={resizeScrollHeight}*/
                 ref={textArea} placeholder='궁금한 내용을 입력해주세요.'>
             </textarea>
         </div>
     );
 }
+
+export default connect(
+    null,
+    function(dispatch) {
+        return {
+            onKeyDown: function (question) {
+                dispatch({ type: 'CHATTING', question: question });
+            }
+        }
+    }
+)(ChatInputBox);

@@ -24,7 +24,7 @@ function App() {
     <div style={topCss} className="App">
       <ChatHeader className="chat-header"></ChatHeader>
       {/*<div className="chat-body">*/}
-        <ChatBody className="ChatBody" questionId={questionId} question={question}></ChatBody>
+        <ChatBody className="ChatBody"></ChatBody>
         <ChatInputBox className="ChatInputBox" sendData={sendData}></ChatInputBox>
       {/*</div>*/}
     </div>

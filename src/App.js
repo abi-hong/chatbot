@@ -5,7 +5,12 @@ import ChatInputBox from './components/ChatInputBox';
 import ChatBody from './components/ChatBody';
 
 const topCss = {
-  minHeight: "100vh"
+  position: "absolute",
+  top: "0",
+  zIndex: "2",
+  width: "100%",
+  height: "100%",
+  display: "block"
 }
 
 export default function App() {

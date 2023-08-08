@@ -1,6 +1,6 @@
 /* sticky header 만들기*/
 .chat-header {
-    height: 40px;
+    height: 50px;
     position: sticky;
     top: 0;
     background: teal;

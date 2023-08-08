@@ -1,6 +1,8 @@
 /* sticky bottom 만들기 */
 .chat-input-box {
-    position: sticky;
+    position: fixed;
+    padding:0;
+    left: 0;
     bottom: 0;
     color: white;
     display: flex;
@@ -10,10 +12,14 @@
     height: auto;
 }
 .chat-input-box-btn {
+    position: sticky;
+    bottom: 0;
     background: black;
     width: 41px;
 }
 .chat-input-box-textarea {
+    position: sticky;
+    bottom: 0;
     width: 100%;
     display: inline-block;
     padding: 10px 20px;

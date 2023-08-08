@@ -9,8 +9,8 @@ function ChatBody(props) {
     for (let i = 0; i < props.maxQuestionId; i++) {
         question_answers.push(
             <>
-                <Question data-id={i+1} question={props.questions[i].question} />
-                {/*<Answer data-id={i+1} answer={props.answers[i].answer} />*/}
+                <Question data-id={i + 1} question={props.questions[i].question} />
+                <Answer data-id={i+1} answer={props.answers[i].answer} />
             </>
         );
     }

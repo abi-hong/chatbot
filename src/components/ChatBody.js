@@ -6,11 +6,11 @@ import { connect } from 'react-redux';
 function ChatBody(props) {
     const question_answers = [];
 
-    for (let i = 0; i < props.maxId; i++) {
+    for (let i = 0; i < props.maxQuestionId; i++) {
         question_answers.push(
             <>
                 <Question data-id={i+1} question={props.questions[i].question} />
-                <Answer data-id={i+1} question={props.answers[i].answers} />
+                {/*<Answer data-id={i+1} answer={props.answers[i].answer} />*/}
             </>
         );
     }
@@ -25,8 +25,10 @@ function ChatBody(props) {
 export default connect(
     function (state) {
         if (state.mode === 'CHATTING_SHOW') {
+            console.log('ChatBody state.mode === CHATTING_SHOW');
             return {
-                maxId: state.max_questionId,
+                maxQuestionId: state.max_questionId,
+                maxAnswerId: state.max_answerId,
                 questions: state.questions,
                 answers: state.answers
             }

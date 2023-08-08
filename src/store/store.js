@@ -34,28 +34,13 @@ function reducer(state=initState, action) {
                 question: action.question
             }
         ];
-        const message = { message: action.question };
-
-        const newAnswer = fetch('http://localhost:3001/', {
-                method: 'POST',
-                headers: {
-                'Content-Type': 'application/json',
-            },
-                body: JSON.stringify({ message })
-        })
-        .then((res) => res.json())
-        .then((data) => {
-            console.log(data.message);
-        })
-
         let newAnswers = [
             ...state.answers,
             {
                 id: newAnswerId,
-                answer: newAnswer
+                answer: action.answer
             }
         ];
-        console.log('newAnswer', newAnswer);
 
         return {
             ...state,

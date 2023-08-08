@@ -20,42 +20,66 @@ function ChatInputBox(props) {
         }
         else if (e.key === 'Enter') { // [Enter] 치면 메시지 보내기
             console.log(e.target.value);
-            await props.onKeyDown(e.target.value);
+            const { isError, data, error } = await getGPTAnswer(e.target.value);
+
+            if(!isError) {
+                props.onKeyDown(e.target.value, data.message);
+            }
+            //console.log('answer', answer);
+            //props.onKeyDown(e.target.value, answer);
 
             textArea.current.value = "";
             textArea.current.blur();
             textArea.current.style.height = 'auto';
         }
-};
+    };
 
-/*const resizeScrollHeight = (e) => {
-    let row = e.target.value.split('\n').length;
-    if () {
-        console.log('row', row);
-        textArea.current.style.height = 'auto';
-        textArea.current.style.height = textArea.current.scrollHeight + 'px';
-        console.log('textArea.current.scrollHeight', textArea.current.scrollHeight);
+    /*const resizeScrollHeight = (e) => {
+        let row = e.target.value.split('\n').length;
+        if () {
+            console.log('row', row);
+            textArea.current.style.height = 'auto';
+            textArea.current.style.height = textArea.current.scrollHeight + 'px';
+            console.log('textArea.current.scrollHeight', textArea.current.scrollHeight);
+        }
+    }*/
+
+    return (
+        <div className='chat-input-box'>
+            <button className='chat-input-box-btn' ref={btn}></button>
+            <textarea rows={1} className='chat-input-box-textarea'
+                onKeyDown={submitMessage.bind(this)}
+                /*onChange={resizeScrollHeight}*/
+                ref={textArea} placeholder='궁금한 내용을 입력해주세요.'>
+            </textarea>
+        </div>
+    );
+}
+
+async function getGPTAnswer(message) {
+    try {
+        const response = await fetch('http://localhost:3001/', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ message })
+        });
+        const data = await response.json();
+        console.log(data.message);
+        return { isError: false, data };
+    } catch (error) {
+        console.error(error);
+        return { isError: true, error };
     }
-}*/
-
-return (
-    <div className='chat-input-box'>
-        <button className='chat-input-box-btn' ref={btn}></button>
-        <textarea rows={1} className='chat-input-box-textarea'
-            onKeyDown={submitMessage.bind(this)}
-            /*onChange={resizeScrollHeight}*/
-            ref={textArea} placeholder='궁금한 내용을 입력해주세요.'>
-        </textarea>
-    </div>
-);
 }
 
 export default connect(
     null,
     function (dispatch) {
         return {
-            onKeyDown: function (question) {
-                dispatch({ type: 'CHATTING', question: question });
+            onKeyDown: function (question, answer) {
+                dispatch({ type: 'CHATTING', question: question, answer: answer });
             }
         }
     }

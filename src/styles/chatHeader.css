@@ -1,5 +1,6 @@
 /* sticky header 만들기*/
 .chat-header {
+    font-weight: bold;
     z-index: 2;
     height: 50px;
     position: sticky;
@@ -12,14 +13,19 @@
     justify-content: space-between;
     align-items: center;
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    border-radius: 0 0 0.9rem 0.9rem;
 }
 .chat-header-title {
     list-style-type: none;
     padding: 0;
 }
 .chat-header-btn {
-    display: inline-block;
-    margin-left: 16px;
-    font-size: 18px;
-    font-weight: bold;
+    /*font-weight: bold;*/
+    background-color: #f0cfc3;
+    color: #fff;
+    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+    border: none;
+    border-radius: 5px;
+    padding: 4px 8px;
+    cursor: pointer;
 }

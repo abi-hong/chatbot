@@ -1,5 +1,12 @@
+/* 채팅 내용 컨테이너 */
 .chat-body {
-    margin: 0;
-    padding: 0;
-    /*background: blue;*/
+    flex: 1; /* 남은 공간을 모두 차지하도록 설정 */
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 100%; /* 최대 너비로 설정 */
+    overflow-y: scroll;
+    padding: 0 10px 10px 10px; /* 내용과 위 아래 여백 조절 가능 */
+    margin-top: 40px; /* .chat-header 높이만큼 위로 여백 추가 */
+    margin-bottom: 60px; /* .input-box 높이 + 여백만큼 아래로 여백 추가 */
 }

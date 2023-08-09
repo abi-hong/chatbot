@@ -1,13 +1,32 @@
+/* 답변 말풍선 박스 */
 .answer-box {
-    border: 1px solid black;
-    border-radius: 30px;
-    max-width: 45%;
-    min-height: 20px;
-
-    margin: 20px 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 80%;
+    background-color: #e5e5e5;
+    border-radius: 10px;
+    padding: 8px 12px;
+    margin: 10px 0;
 }
 
 .answer-text {
-    padding: 15px;
     margin: 0;
+}
+
+/* 답변 시간 */
+.time-div {
+    position: absolute;
+    margin-top: -1.6rem;
+    left: 15px;
+    font-size: 12px;
+    color: #888;
+}
+
+@media screen and (max-width: 600px) {
+
+    /* 화면 너비가 600px 이하일 때 적용되는 스타일 */
+    .answer-box {
+        max-width: 90%;
+    }
 }

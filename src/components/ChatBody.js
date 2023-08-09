@@ -5,29 +5,37 @@ import Question from './Question';
 import { connect } from 'react-redux';
 
 function ChatBody(props) {
+    let date = new Date();
+    let hours = date.getHours();
+    let ampm = hours < 12 ? "오전" : "오후";
+    let hour = hours < 12 ? hours : hours - 12;
+    let minute = date.getMinutes();
+
+    let timestring = `${ampm} ${hour}:${minute}`;
+
 
     const question_answers = [];
-    const scrollRef = useRef();
-    console.log('scrollRef.current', scrollRef.current);
+    //const scrollRef = useRef();
+    //console.log('scrollRef.current', scrollRef.current);
 
     for (let i = 0; i < props.maxQuestionId; i++) {
         question_answers.push(
             <>
-                <Question data-id={i + 1} question={props.questions[i].question} />
-                <Answer data-id={i + 1} answer={props.answers[i].answer} />
+                <Question data-id={i + 1} question={props.questions[i].question} time={timestring}/>
+                <Answer data-id={i + 1} answer={props.answers[i].answer} time={timestring}/>
             </>
         );
     }
 
-    useEffect(() => {
+    /*useEffect(() => {
         console.log('useEffect');
         scrollRef.current.scrollIntoView({ behavior: 'smooth' });
-    }, [question_answers]);
+    }, [question_answers]);*/
 
     return (
         <div className="chat-body">
             {question_answers}
-            <div ref={scrollRef} > dkdkkdk</div>
+            {/*<div ref={scrollRef} ></div>*/}
         </div>
     );
 }

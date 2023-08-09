@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 // 엔터 누르면 전송되도록
 function ChatInputBox(props) {
     const textArea = useRef();
-    const btn = useRef();
 
     const submitMessage = async (e) => {
         //console.log(e);
@@ -46,12 +45,12 @@ function ChatInputBox(props) {
 
     return (
         <div className='chat-input-box'>
-            <button className='chat-input-box-btn' ref={btn}></button>
             <textarea rows={1} className='chat-input-box-textarea'
                 onKeyDown={submitMessage.bind(this)}
                 /*onChange={resizeScrollHeight}*/
                 ref={textArea} placeholder='궁금한 내용을 입력해주세요.'>
             </textarea>
+            <button className='chat-input-box-btn'>전송</button>
         </div>
     );
 }

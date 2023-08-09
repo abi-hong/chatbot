@@ -1,25 +1,21 @@
 import { createStore } from 'redux';
 
 const initState = {
-    mode: 'CHATTING_SHOW',
-    welcome_content: "안녕하세요. 챗봇입니다!",
+    mode: 'Welcome',
     show_questionId: 0,
-    max_questionId: 1,
+    max_questionId: 0,
     questions: [
-        { id: 1, question: '챗봇질문1'},
-        //{ id: 2, question: '챗봇질문2'},
+        //{ id: 1, question: '챗봇질문1'},
     ],
     show_answerId: 0,
-    max_answerId: 1,
+    max_answerId: 0,
     answers: [
-        { id: 1, answer: '챗봇질문1에 대한 답변1'},
-        //{ id: 2, answer: '챗봇질문2에 대한 답변2'},
+        //{ id: 1, answer: '챗봇질문1에 대한 답변1'},
     ],
 }
 
 function reducer(state=initState, action) {
     if (action.type === 'WELCOME') {
-        return {...state, mode: 'CHATTING_SHOW' };
     }
     if (action.type === 'CHATTING') { // 질문 발화할 때,
         console.log('state', state);

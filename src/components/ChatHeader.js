@@ -4,7 +4,7 @@ export default function ChatHeader() {
     return (
         <div className='chat-header'>
             <div className='chat-header-title'>Chatbot</div>
-            <button className='chat-header-btn'>상담종료</button>
+            <button className='chat-header-btn'>Close</button>
         </div>
     );
 }

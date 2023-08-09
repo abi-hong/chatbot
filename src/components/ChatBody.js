@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import '../styles/chatBody.css';
+import Welcome from './Welcome';
 import Answer from './Answer';
 import Question from './Question';
 import { connect } from 'react-redux';
@@ -21,8 +22,8 @@ function ChatBody(props) {
     for (let i = 0; i < props.maxQuestionId; i++) {
         question_answers.push(
             <>
-                <Question data-id={i + 1} question={props.questions[i].question} time={timestring}/>
-                <Answer data-id={i + 1} answer={props.answers[i].answer} time={timestring}/>
+                <Question data-id={i + 1} question={props.questions[i].question} time={timestring} />
+                <Answer data-id={i + 1} answer={props.answers[i].answer} time={timestring} />
             </>
         );
     }
@@ -33,15 +34,21 @@ function ChatBody(props) {
     }, [question_answers]);*/
 
     return (
-        <div className="chat-body">
-            {question_answers}
-            {/*<div ref={scrollRef} ></div>*/}
-        </div>
+        <>
+            <Welcome></Welcome>
+            <div className="chat-body">
+                {question_answers}
+                {/*<div ref={scrollRef} ></div>*/}
+            </div>
+        </>
     );
 }
 
 export default connect(
     function (state) {
+        if (state.mode === 'WELCOME') {
+            console.log('ChatBody state.mode === WELCOME');
+        }
         if (state.mode === 'CHATTING_SHOW') {
             console.log('ChatBody state.mode === CHATTING_SHOW');
             return {

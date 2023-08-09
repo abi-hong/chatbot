@@ -51,7 +51,6 @@ function reducer(state=initState, action) {
     }
     if (action.type === 'CHATTING_SHOW') { // 질문 발화 후, 화면에 보여줄 때
         console.log('state', state);
-
     }
     return state;
 }

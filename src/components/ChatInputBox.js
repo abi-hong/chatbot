@@ -1,6 +1,7 @@
 import React, { useRef } from 'react';
 import '../styles/chatInputBox.css';
 import { connect } from 'react-redux';
+import Question from './Question';
 
 // 엔터 누르면 전송되도록
 function ChatInputBox(props) {
@@ -19,29 +20,14 @@ function ChatInputBox(props) {
         }
         else if (e.key === 'Enter') { // [Enter] 치면 메시지 보내기
             console.log(e.target.value);
-            const { isError, data, error } = await getGPTAnswer(e.target.value);
-
-            if(!isError) {
-                props.onKeyDown(e.target.value, data.message);
-            }
-            //console.log('answer', answer);
-            //props.onKeyDown(e.target.value, answer);
+            localStorage.setItem('question', e.target.value);
+            props.onKeyDown();
 
             textArea.current.value = "";
             textArea.current.blur();
             textArea.current.style.height = 'auto';
         }
     };
-
-    /*const resizeScrollHeight = (e) => {
-        let row = e.target.value.split('\n').length;
-        if () {
-            console.log('row', row);
-            textArea.current.style.height = 'auto';
-            textArea.current.style.height = textArea.current.scrollHeight + 'px';
-            console.log('textArea.current.scrollHeight', textArea.current.scrollHeight);
-        }
-    }*/
 
     return (
         <div className='chat-input-box'>
@@ -77,8 +63,8 @@ export default connect(
     null,
     function (dispatch) {
         return {
-            onKeyDown: function (question, answer) {
-                dispatch({ type: 'CHATTING', question: question, answer: answer });
+            onKeyDown: function () {
+                dispatch({ type: 'CHATTING' });
             }
         }
     }

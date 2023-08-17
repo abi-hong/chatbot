@@ -1,9 +1,12 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import '../styles/chatBody.css';
 import Welcome from './Welcome';
 import Answer from './Answer';
 import Question from './Question';
+import Loading from './Loading.js';
 import { connect } from 'react-redux';
+
+const questions = [];
 
 function ChatBody(props) {
     let date = new Date();
@@ -13,32 +16,20 @@ function ChatBody(props) {
     let minute = date.getMinutes();
 
     let timestring = `${ampm} ${hour}:${minute}`;
-
-
-    const question_answers = [];
-    //const scrollRef = useRef();
-    //console.log('scrollRef.current', scrollRef.current);
-
-    for (let i = 0; i < props.maxQuestionId; i++) {
-        question_answers.push(
-            <>
-                <Question data-id={i + 1} question={props.questions[i].question} time={timestring} />
-                <Answer data-id={i + 1} answer={props.answers[i].answer} time={timestring} />
-            </>
-        );
-    }
-
-    /*useEffect(() => {
-        console.log('useEffect');
-        scrollRef.current.scrollIntoView({ behavior: 'smooth' });
-    }, [question_answers]);*/
-
+    
+    useEffect(() => {
+        if(props.question) {
+            console.log('useEffect first');
+        }
+        console.log('useEffect props.question', props.question);
+    }, [props.question])
+    
     return (
         <>
             <Welcome></Welcome>
             <div className="chat-body">
-                {question_answers}
-                {/*<div ref={scrollRef} ></div>*/}
+                <Question question={props.question} time={timestring} />
+                <Loading time={timestring} />
             </div>
         </>
     );
@@ -49,13 +40,10 @@ export default connect(
         if (state.mode === 'WELCOME') {
             console.log('ChatBody state.mode === WELCOME');
         }
-        if (state.mode === 'CHATTING_SHOW') {
-            console.log('ChatBody state.mode === CHATTING_SHOW');
+        if (state.mode === 'CHATTING') {
+            console.log('ChatBody state.mode === CHATTING');
             return {
-                maxQuestionId: state.max_questionId,
-                maxAnswerId: state.max_answerId,
-                questions: state.questions,
-                answers: state.answers
+                question: localStorage.getItem('question')
             }
         }
     },

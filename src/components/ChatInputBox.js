@@ -21,7 +21,7 @@ function ChatInputBox(props) {
         else if (e.key === 'Enter') { // [Enter] 치면 메시지 보내기
             console.log(e.target.value);
             localStorage.setItem('question', e.target.value);
-            props.onKeyDown();
+            props.onKeyDown(e.target.value);
 
             textArea.current.value = "";
             textArea.current.blur();
@@ -63,8 +63,8 @@ export default connect(
     null,
     function (dispatch) {
         return {
-            onKeyDown: function () {
-                dispatch({ type: 'CHATTING' });
+            onKeyDown: function(question) {
+                dispatch({ type: 'CHATTING', class: 'question', question });
             }
         }
     }

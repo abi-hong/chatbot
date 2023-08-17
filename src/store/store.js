@@ -1,17 +1,11 @@
 import { createStore } from 'redux';
 
 const initState = {
-    mode: 'Welcome',
-    show_questionId: 0,
-    max_questionId: 0,
-    questions: [
-        //{ id: 1, question: '챗봇질문1'},
-    ],
-    show_answerId: 0,
-    max_answerId: 0,
-    answers: [
-        //{ id: 1, answer: '챗봇질문1에 대한 답변1'},
-    ],
+    mode: 'WELCOME',
+    showId: 0,
+    message : [
+        //{id: 1, class: 'question' or 'answer', text: 'text1111'},
+    ]
 }
 
 function reducer(state=initState, action) {
@@ -19,9 +13,20 @@ function reducer(state=initState, action) {
     }
     if (action.type === 'CHATTING') { // 질문 발화할 때,
         console.log('state', state);
+        let newShowId = state.showId + 1;
+        let newMessage = [
+            ...state.message,
+            {
+                id: newShowId,
+                class: action.class,
+                text: action.question
+            }
+        ];
 
         return {
             ...state,
+            showId: newShowId,
+            message: newMessage,
             mode: 'CHATTING'
         }; //발화 데이터 추가하기
     }

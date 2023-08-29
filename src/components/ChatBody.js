@@ -1,15 +1,16 @@
-import React, { useEffect, useRef, useState} from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import '../styles/chatBody.css';
 import Welcome from './Welcome';
 import Answer from './Answer';
 import Question from './Question';
 import Loading from './Loading.js';
-import { connect } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 
-const question_answers = [];
 
-function ChatBody(props) {
+export default function ChatBody() {
     const [messages, setMessages] = useState([]);
+    //const dispatch = useDispatch();
+    const text = useSelector(state=>state.chatting.message);
 
     let date = new Date();
     let hours = date.getHours();
@@ -20,10 +21,14 @@ function ChatBody(props) {
     let timestring = `${ampm} ${hour}:${minute}`;
 
     useEffect(() => {
-        console.log('useEffect messages', messages);
-        console.log( messages && messages.map((message) => console.log(message)));
-        setMessages(props.message);
-    },[props.message]);
+        //messages && messages.map((message) => console.log(message));
+        console.log('useEffect message', text);
+        setMessages(text);
+        //dispatch(getGPTAnswer(current_q));
+        console.log('main으로 빠짐, useEffect 종료');
+    }, [text]); // Or [] if effect doesn't need props or state
+
+
 
     return (
         <>
@@ -40,7 +45,7 @@ function ChatBody(props) {
         </>
     );
 }
-
+/*
 export default connect(
     function (state) {
         if (state.mode === 'WELCOME') {
@@ -53,6 +58,13 @@ export default connect(
                 question: localStorage.getItem('question')
             }
         }
+        if (state.mode === 'LOADING') {
+            console.log('ChatBody state.mode === LOADING');
+            return {
+                message: state.message
+            }
+        }
     },
     null
 )(ChatBody);
+*/

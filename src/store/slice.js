@@ -20,7 +20,7 @@ const chattingSlice = createSlice({
     name: 'chattingSlice',
     initialState: {
         message: [],
-        status: 'welcome'
+        status: 'loading'
     },
     reducers: {
         question: (state, action) => {
@@ -29,9 +29,10 @@ const chattingSlice = createSlice({
     },
     extraReducers: (builder) => {
         builder.addCase(asyncAnswerFetch.pending, (state, action) => {
-            state.status = 'Loading...';
+            state.status = 'loading';
         })
         builder.addCase(asyncAnswerFetch.fulfilled, (state, action) => {
+            state.status = 'success';
             state.message.push({ class: 'answer', text: action.payload });
         })
         builder.addCase(asyncAnswerFetch.rejected, (state, action) => {

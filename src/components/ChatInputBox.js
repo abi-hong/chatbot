@@ -1,22 +1,8 @@
 import React, { useRef } from 'react';
 import '../styles/chatInputBox.css';
-import { connect, useDispatch } from 'react-redux';
-import Question from './Question';
+import { useDispatch } from 'react-redux';
 import {question} from '../store/slice';
-
-/*
-function Counter(){
-  const dispatch = useDispatch();
-  const count = useSelector(state=>{
-    return state.counter.value;
-  });
-  return <div>
-    <button onClick={()=>{
-      dispatch(up(2));
-    }}>+</button> {count}
-  </div>
-}
-*/
+import { asyncAnswerFetch } from '../store/slice';
 
 // 엔터 누르면 전송되도록
 export default function ChatInputBox(props) {
@@ -52,6 +38,7 @@ export default function ChatInputBox(props) {
                     if(e.key === 'Enter') {
                         console.log('e.target.value', e.target.value);
                         dispatch(question(e.target.value));
+                        dispatch(asyncAnswerFetch(e.target.value));
                     }
                 }
                 }

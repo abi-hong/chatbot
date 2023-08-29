@@ -1,9 +1,12 @@
 import React, { useRef } from 'react';
 import '../styles/chatInputBox.css';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import {question} from '../store/slice';
+import { asyncAnswerFetch } from '../store/slice';
 
 // 엔터 누르면 전송되도록
-function ChatInputBox(props) {
+export default function ChatInputBox() {
+    const dispatch = useDispatch();
     const textArea = useRef();
 
     const submitMessage = async (e) => {
@@ -19,13 +22,8 @@ function ChatInputBox(props) {
         }
         else if (e.key === 'Enter') { // [Enter] 치면 메시지 보내기
             console.log(e.target.value);
-            const { isError, data, error } = await getGPTAnswer(e.target.value);
-
-            if(!isError) {
-                props.onKeyDown(e.target.value, data.message);
-            }
-            //console.log('answer', answer);
-            //props.onKeyDown(e.target.value, answer);
+            localStorage.setItem('question', e.target.value);
+            //props.onKeyDown(e.target.value);
 
             textArea.current.value = "";
             textArea.current.blur();
@@ -33,20 +31,17 @@ function ChatInputBox(props) {
         }
     };
 
-    /*const resizeScrollHeight = (e) => {
-        let row = e.target.value.split('\n').length;
-        if () {
-            console.log('row', row);
-            textArea.current.style.height = 'auto';
-            textArea.current.style.height = textArea.current.scrollHeight + 'px';
-            console.log('textArea.current.scrollHeight', textArea.current.scrollHeight);
-        }
-    }*/
-
     return (
         <div className='chat-input-box'>
             <textarea rows={1} className='chat-input-box-textarea'
-                onKeyDown={submitMessage.bind(this)}
+                onKeyDown={(e) => {
+                    if(e.key === 'Enter') {
+                        console.log('e.target.value', e.target.value);
+                        dispatch(question(e.target.value));
+                        dispatch(asyncAnswerFetch(e.target.value));
+                    }
+                }
+                }
                 /*onChange={resizeScrollHeight}*/
                 ref={textArea} placeholder='궁금한 내용을 입력해주세요.'>
             </textarea>
@@ -54,32 +49,3 @@ function ChatInputBox(props) {
         </div>
     );
 }
-
-async function getGPTAnswer(message) {
-    try {
-        const response = await fetch('http://localhost:3001/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ message })
-        });
-        const data = await response.json();
-        console.log(data.message);
-        return { isError: false, data };
-    } catch (error) {
-        console.error(error);
-        return { isError: true, error };
-    }
-}
-
-export default connect(
-    null,
-    function (dispatch) {
-        return {
-            onKeyDown: function (question, answer) {
-                dispatch({ type: 'CHATTING', question: question, answer: answer });
-            }
-        }
-    }
-)(ChatInputBox);

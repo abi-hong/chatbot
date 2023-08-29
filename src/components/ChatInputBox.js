@@ -5,7 +5,7 @@ import {question} from '../store/slice';
 import { asyncAnswerFetch } from '../store/slice';
 
 // 엔터 누르면 전송되도록
-export default function ChatInputBox(props) {
+export default function ChatInputBox() {
     const dispatch = useDispatch();
     const textArea = useRef();
 
@@ -49,15 +49,3 @@ export default function ChatInputBox(props) {
         </div>
     );
 }
-/*
-export default connect(
-    null,
-    function (dispatch) {
-        return {
-            onKeyDown: function(question) {
-                dispatch({ type: 'CHATTING', class: 'question', question });
-            }
-        }
-    }
-)(ChatInputBox);
-*/

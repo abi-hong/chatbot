@@ -3,7 +3,7 @@ import '../styles/chatBody.css';
 import Welcome from './Welcome';
 import Answer from './Answer';
 import Question from './Question';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 
 export default function ChatBody() {

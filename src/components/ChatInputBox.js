@@ -1,10 +1,26 @@
 import React, { useRef } from 'react';
 import '../styles/chatInputBox.css';
-import { connect } from 'react-redux';
+import { connect, useDispatch } from 'react-redux';
 import Question from './Question';
+import {question} from '../store/slice';
+
+/*
+function Counter(){
+  const dispatch = useDispatch();
+  const count = useSelector(state=>{
+    return state.counter.value;
+  });
+  return <div>
+    <button onClick={()=>{
+      dispatch(up(2));
+    }}>+</button> {count}
+  </div>
+}
+*/
 
 // 엔터 누르면 전송되도록
-function ChatInputBox(props) {
+export default function ChatInputBox(props) {
+    const dispatch = useDispatch();
     const textArea = useRef();
 
     const submitMessage = async (e) => {
@@ -21,7 +37,7 @@ function ChatInputBox(props) {
         else if (e.key === 'Enter') { // [Enter] 치면 메시지 보내기
             console.log(e.target.value);
             localStorage.setItem('question', e.target.value);
-            props.onKeyDown(e.target.value);
+            //props.onKeyDown(e.target.value);
 
             textArea.current.value = "";
             textArea.current.blur();
@@ -32,7 +48,13 @@ function ChatInputBox(props) {
     return (
         <div className='chat-input-box'>
             <textarea rows={1} className='chat-input-box-textarea'
-                onKeyDown={submitMessage.bind(this)}
+                onKeyDown={(e) => {
+                    if(e.key === 'Enter') {
+                        console.log('e.target.value', e.target.value);
+                        dispatch(question(e.target.value));
+                    }
+                }
+                }
                 /*onChange={resizeScrollHeight}*/
                 ref={textArea} placeholder='궁금한 내용을 입력해주세요.'>
             </textarea>
@@ -40,25 +62,7 @@ function ChatInputBox(props) {
         </div>
     );
 }
-
-async function getGPTAnswer(message) {
-    try {
-        const response = await fetch('http://localhost:3001/', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify({ message })
-        });
-        const data = await response.json();
-        console.log(data.message);
-        return { isError: false, data };
-    } catch (error) {
-        console.error(error);
-        return { isError: true, error };
-    }
-}
-
+/*
 export default connect(
     null,
     function (dispatch) {
@@ -69,3 +73,4 @@ export default connect(
         }
     }
 )(ChatInputBox);
+*/

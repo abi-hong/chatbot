@@ -1,13 +1,25 @@
 import { createStore } from 'redux';
+import { configureStore } from '@reduxjs/toolkit';
+import chattingSlice from './slice';
 
-const initState = {
+const store = configureStore({
+    reducer: {
+        //welcome: welcomeSlice.reducer,
+        chatting: chattingSlice.reducer
+    }
+})
+
+export default store;
+
+/*const initState = {
     mode: 'WELCOME',
     showId: 0,
     message : [
         //{id: 1, class: 'question' or 'answer', text: 'text1111'},
     ]
-}
+}*/
 
+/*
 function reducer(state=initState, action) {
     if (action.type === 'WELCOME') {
     }
@@ -30,13 +42,21 @@ function reducer(state=initState, action) {
             mode: 'CHATTING'
         }; //발화 데이터 추가하기
     }
-    if (action.type === 'CHATTING_SHOW') { // 질문 발화 후, 화면에 보여줄 때
+    if (action.type === 'LOADING') {
         console.log('state', state);
+
+        return {
+            ...state,
+            mode: 'LOADING'
+        };
     }
     return state;
 }
+*/
 
+/*
 export default createStore(
     reducer, 
     window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
 );
+*/

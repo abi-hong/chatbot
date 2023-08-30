@@ -20,7 +20,7 @@ const chattingSlice = createSlice({
     name: 'chattingSlice',
     initialState: {
         message: [],
-        status: 'loading'
+        status: 'welcome'
     },
     reducers: {
         question: (state, action) => {

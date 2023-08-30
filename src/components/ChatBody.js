@@ -20,16 +20,22 @@ export default function ChatBody() {
 
     useEffect(() => {
         console.log('useEffect before message', text);
-        setMessages(text);
+
+        if(status === 'loading') {
+            setMessages([...text, {class: "answer", text: 'loading...'}])
+        } else {
+            setMessages(text)
+        }
+
         console.log('main으로 빠짐, useEffect 종료');
         console.log('useEffect after message', text);
-    }, [text]);
+    }, [status, text]);
 
     return (
         <>
             <Welcome></Welcome>
             <div className="chat-body">
-                {messages && messages.map((message) => (
+                {messages && messages.map((message, index) => (
                     message.class === 'question' ?
                     <Question key={message.id} question={message.text} time={timestring} />
                     : <Answer key={message.id} answer={message.text} time={timestring} />

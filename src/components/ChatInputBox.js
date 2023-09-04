@@ -1,12 +1,16 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import '../styles/chatInputBox.css';
 import { useDispatch } from 'react-redux';
 import { question } from '../store/slice';
 import { asyncAnswerFetch } from '../store/slice';
-import Image from '../constants/quick-menu.png';
+import CloseImg from '../constants/close-quick-menu.png';
+import Img from '../constants/quick-menu.png';
 
 // 엔터 누르면 전송되도록
 export default function ChatInputBox() {
+    const [imgQuickMenu, setImgQuickMenu] = useState(Img);
+    const [isClicked, setIsClicked] = useState(false);
+
     const dispatch = useDispatch();
     const textArea = useRef();
 
@@ -34,7 +38,17 @@ export default function ChatInputBox() {
 
     return (
         <div className='chat-input-box'>
-            <button className='chat-input-button'><img src={Image} width={18} height={15}/></button>
+            <button className='chat-input-button' 
+                onClick={(e) => {
+                    if (isClicked) {
+                        setImgQuickMenu(CloseImg)
+                        setIsClicked(false)
+                    } else {
+                        setImgQuickMenu(Img)
+                        setIsClicked(true)
+                    }
+                }}
+            ><img src={imgQuickMenu} width={18} height={15}/></button>
             <textarea rows={1} className='chat-input-box-textarea'
                 onKeyDown={(e) => {
                     if (e.key === 'Enter') {

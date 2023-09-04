@@ -1,3 +1,12 @@
+.chat-input-button {
+    background-color: #be3455;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+}
+
 /* 입력 상자 스타일 */
 .chat-input-box {
     display: flex;
@@ -26,5 +35,5 @@
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 5px;
-    margin-right: 10px;
+    margin: 0px 10px;
 }

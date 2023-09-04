@@ -1,8 +1,9 @@
 import React, { useRef } from 'react';
 import '../styles/chatInputBox.css';
 import { useDispatch } from 'react-redux';
-import {question} from '../store/slice';
+import { question } from '../store/slice';
 import { asyncAnswerFetch } from '../store/slice';
+import Image from '../constants/quick-menu.png';
 
 // 엔터 누르면 전송되도록
 export default function ChatInputBox() {
@@ -33,9 +34,10 @@ export default function ChatInputBox() {
 
     return (
         <div className='chat-input-box'>
+            <button className='chat-input-button'><img src={Image} width={18} height={15}/></button>
             <textarea rows={1} className='chat-input-box-textarea'
                 onKeyDown={(e) => {
-                    if(e.key === 'Enter') {
+                    if (e.key === 'Enter') {
                         console.log('e.target.value', e.target.value);
                         dispatch(question(e.target.value));
                         dispatch(asyncAnswerFetch(e.target.value));
@@ -47,5 +49,6 @@ export default function ChatInputBox() {
             </textarea>
             <button className='chat-input-box-btn'>전송</button>
         </div>
+
     );
 }

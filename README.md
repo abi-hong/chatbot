@@ -5,11 +5,13 @@
 
 ## 🔰 Service View
 1. 챗봇 화면
-<img src="https://github.com/abi-hong/chatbot/assets/68041042/19645a6f-db42-4eed-a2a1-c43efc8282ce" width="584">
-
+<img width="30%" height="30" src="https://github.com/abi-hong/chatbot/assets/68041042/5c1cc01c-bff8-4061-af67-6e528651a364">
 2. 발화 시, 챗봇 화면
-<img src="https://github.com/abi-hong/chatbot/assets/68041042/055d8f86-a78f-49c5-b852-ad9e0122bfd5" width="586">
+<img width="30%" height="30" src="https://github.com/abi-hong/chatbot/assets/68041042/67bc4b0d-7215-4a4e-b219-b10d0c5c7af1">
 
+## 🔰 Future Features
+1. 퀵메뉴 구현 예정
+2. Loading UI 수정 예정
 
 ## 🔰 Skills
 > JS CSS React Redux

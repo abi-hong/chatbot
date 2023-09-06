@@ -6,6 +6,7 @@
 ## 🔰 Service View
 1. 챗봇 화면
 <img width="584" src="https://github.com/abi-hong/chatbot/assets/68041042/5c1cc01c-bff8-4061-af67-6e528651a364">
+<br/>
 2. 발화 시, 챗봇 화면
 <img width="584" src="https://github.com/abi-hong/chatbot/assets/68041042/67bc4b0d-7215-4a4e-b219-b10d0c5c7af1">
 

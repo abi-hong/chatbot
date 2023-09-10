@@ -32,7 +32,8 @@ export default function ChatBody() {
     
     // 맨 아래로 스크롤
     useEffect(() => {
-        messageEndRef.current.scrollIntoView({ behavior: 'smooth' })
+        // scrollIntoView() : 자신이 호출된 요소가 사용자에게 표시되도록 상위 컨테이너를 스크롤
+        messageEndRef.current.scrollIntoView({ behavior: 'smooth' });
     }, [messages])
 
     return (

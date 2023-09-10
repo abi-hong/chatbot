@@ -10,6 +10,7 @@ export default function ChatBody() {
     const [messages, setMessages] = useState([]);
     const text = useSelector(state=>state.chatting.message);
     const status = useSelector(state=>state.chatting.status);
+    const messageEndRef = useRef(null);
 
     let date = new Date();
     let hours = date.getHours();
@@ -20,16 +21,19 @@ export default function ChatBody() {
 
     useEffect(() => {
         console.log('useEffect before message', text);
-
         if(status === 'loading') {
             setMessages([...text, {class: "answer", text: 'loading...'}])
         } else {
             setMessages(text)
         }
-
         console.log('main으로 빠짐, useEffect 종료');
         console.log('useEffect after message', text);
     }, [status, text]);
+    
+    // 맨 아래로 스크롤
+    useEffect(() => {
+        messageEndRef.current.scrollIntoView({ behavior: 'smooth' })
+    }, [messages])
 
     return (
         <>
@@ -40,6 +44,7 @@ export default function ChatBody() {
                     <Question key={message.id} question={message.text} time={timestring} />
                     : <Answer key={message.id} answer={message.text} time={timestring} />
                 ))}
+                <div ref={messageEndRef}></div>
             </div>
         </>
     );

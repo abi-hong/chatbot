@@ -40,12 +40,13 @@ export default function ChatInputBox() {
         <div className='chat-input-box'>
             <button className='chat-input-button' 
                 onClick={(e) => {
+                    //console.log('click!');
                     if (isClicked) {
-                        setImgQuickMenu(CloseImg)
-                        setIsClicked(false)
+                        setImgQuickMenu(CloseImg);
+                        setIsClicked(false);
                     } else {
-                        setImgQuickMenu(Img)
-                        setIsClicked(true)
+                        setImgQuickMenu(Img);
+                        setIsClicked(true);
                     }
                 }}
             ><img src={imgQuickMenu} width={18} height={15}/></button>

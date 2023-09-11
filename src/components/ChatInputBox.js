@@ -44,14 +44,14 @@ export default function ChatInputBox() {
     };
 
     return (
-        <>
-            <div className='chat-input-box'>
-                <button className='chat-input-button'
+        <div className='chat-bottom'>
+            <div id='chat-input-box' className={isClicked ? 'show-menu' : ''}>
+                <button className='chat-menu-btn'
                     onClick={showQuickMenu}>
                     {isClicked ? <img src={CloseImg} width={18} height={15} />
                         : <img src={Img} width={18} height={15} />}
                 </button>
-                <textarea rows={1} className='chat-input-box-textarea'
+                <textarea rows={1} className='chat-textarea'
                     onKeyDown={(e) => {
                         if (e.key === 'Enter') {
                             console.log('e.target.value', e.target.value);
@@ -63,14 +63,14 @@ export default function ChatInputBox() {
                     /*onChange={resizeScrollHeight}*/
                     ref={textArea} placeholder='궁금한 내용을 입력해주세요.'>
                 </textarea>
-                <button className='chat-input-box-btn'>전송</button>
+                <button className='chat-submit-btn'>전송</button>
+                <div id='quick-btn-group' className={isClicked ? '' : 'hide-menu'}>
+                    <button className='quick-btn'>처음으로</button>
+                    <button className='quick-btn'>챗봇사용법</button>
+                    <button className='quick-btn'>상담이력</button>
+                    <button className='quick-btn'>챗봇종료</button>
+                </div>
             </div>
-            <div className={isClicked ? 'show-menu' : 'hide-menu'}>
-                <button className='quick-btn-group'>처음으로</button>
-                <button className='quick-btn-group'>챗봇사용법</button>
-                <button className='quick-btn-group'>상담이력</button>
-                <button className='quick-btn-group'>챗봇종료</button>
-            </div>
-        </>
+        </div>
     );
 }

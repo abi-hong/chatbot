@@ -1,28 +1,42 @@
-.chat-input-button {
-    background-color: #be3455;
-    color: #fff;
-    border: none;
-    border-radius: 5px;
-    padding: 8px 12px;
-    cursor: pointer;
+.chat-bottom {
+    position: fixed;
+    padding: 10px;
+    border-top: 5px solid transparent;
+    z-index: 1002;
+    display: block;
+    animation: slide-in-fwd-up-show-chatinput 0.4s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+    transition: all .3s;
+    left: 0;
+    bottom: 0;
+    right: 0;
 }
 
 /* 입력 상자 스타일 */
-.chat-input-box {
-    display: flex;
-    align-items: center;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: #fff;
-    padding: 10px;
-    box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
+#chat-input-box {
+    position: relative;
     z-index: 1;
-    /* 아래에 가려지는 현상 방지를 위해 */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+}
+#quick-btn-group {
+    position: absolute;
+    top: 52px;
+    background: #fff;
+    width: 100%;
+    opacity: 1;
+    left: 0;
+}
+.show-menu {
+    margin-top: -294px;
+}
+.hide-menu {
+    /*visibility: hidden;*/
+    display: none;
 }
 
-.chat-input-box-btn {
+.chat-menu-btn {
     background-color: #be3455;
     color: #fff;
     border: none;
@@ -30,39 +44,28 @@
     padding: 8px 12px;
     cursor: pointer;
 }
-
-.chat-input-box-textarea {
+.chat-textarea {
     flex: 1;
     padding: 8px;
     border: 1px solid #ccc;
     border-radius: 5px;
     margin: 0px 10px;
 }
+.chat-submit-btn {
+    background-color: #be3455;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 8px 12px;
+    cursor: pointer;
+}
 
-/* 퀵메뉴 css */
-.quick-btn-group {
-    display: block;
+/* 퀵메뉴 버튼 CSS */
+.quick-btn {
     float: left;
-    width: 25%;
+    width: 30%;
     position: relative;
     text-align: center;
     font-size: 12px;
     line-height: 16px;
-}
-
-.show-menu {
-    max-width: 100%; /* 최대 너비로 설정 */
-    height: 50px;
-    background-color: black;
-    position: absolute;
-    bottom: 100px;
-    transition: 1s;
-}
-
-.hide-menu {
-    max-width: 100%; /* 최대 너비로 설정 */
-    height: 50px;
-    position: absolute;
-    bottom: -376px;
-    transition: 1s;
 }

@@ -18,7 +18,8 @@
     background-color: #fff;
     padding: 10px;
     box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.1);
-    z-index: 1; /* 아래에 가려지는 현상 방지를 위해 */
+    z-index: 1;
+    /* 아래에 가려지는 현상 방지를 위해 */
 }
 
 .chat-input-box-btn {
@@ -36,4 +37,32 @@
     border: 1px solid #ccc;
     border-radius: 5px;
     margin: 0px 10px;
+}
+
+/* 퀵메뉴 css */
+.quick-btn-group {
+    display: block;
+    float: left;
+    width: 25%;
+    position: relative;
+    text-align: center;
+    font-size: 12px;
+    line-height: 16px;
+}
+
+.show-menu {
+    max-width: 100%; /* 최대 너비로 설정 */
+    height: 50px;
+    background-color: black;
+    position: absolute;
+    bottom: 100px;
+    transition: 1s;
+}
+
+.hide-menu {
+    max-width: 100%; /* 최대 너비로 설정 */
+    height: 50px;
+    position: absolute;
+    bottom: -376px;
+    transition: 1s;
 }

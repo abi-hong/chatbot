@@ -5,12 +5,10 @@ import { question } from '../store/slice';
 import { asyncAnswerFetch } from '../store/slice';
 import CloseImg from '../constants/close-quick-menu.png';
 import Img from '../constants/quick-menu.png';
-import QuickMenu from './QuickMenu';
 
 // 엔터 누르면 전송되도록
 export default function ChatInputBox() {
     const [isClicked, setIsClicked] = useState(false);
-
     const dispatch = useDispatch();
     const textArea = useRef();
 
@@ -37,10 +35,11 @@ export default function ChatInputBox() {
     };
 
     const showQuickMenu = (e) => {
+        //isClicked ? setIsClicked(!isClicked) : setIsClicked(!isClicked);
         if (isClicked) {
-            setIsClicked(false);
+            setIsClicked(false)
         } else {
-            setIsClicked(true);
+            setIsClicked(true)
         }
     };
 
@@ -49,8 +48,8 @@ export default function ChatInputBox() {
             <div className='chat-input-box'>
                 <button className='chat-input-button'
                     onClick={showQuickMenu}>
-                    {isClicked ? <img src={CloseImg} width={18} height={15} /> 
-                        : <img src={Img} width={18} height={15} /> }
+                    {isClicked ? <img src={CloseImg} width={18} height={15} />
+                        : <img src={Img} width={18} height={15} />}
                 </button>
                 <textarea rows={1} className='chat-input-box-textarea'
                     onKeyDown={(e) => {
@@ -66,7 +65,12 @@ export default function ChatInputBox() {
                 </textarea>
                 <button className='chat-input-box-btn'>전송</button>
             </div>
-            <QuickMenu className={isClicked ? 'show-menu' : 'hide-menu'}></QuickMenu>
+            <div className={isClicked ? 'show-menu' : 'hide-menu'}>
+                <button className='quick-btn-group'>처음으로</button>
+                <button className='quick-btn-group'>챗봇사용법</button>
+                <button className='quick-btn-group'>상담이력</button>
+                <button className='quick-btn-group'>챗봇종료</button>
+            </div>
         </>
     );
 }
